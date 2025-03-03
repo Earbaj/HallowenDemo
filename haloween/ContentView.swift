@@ -30,7 +30,7 @@ struct CardView: View{
 
 struct ContentView: View {
     var emojis = ["🚗","🚕","🚙","🚌","🚎","🏎️","🚓","🚑","🚒","🚐","🛻","🚚","🚛","🚜","🚲","🛴","🛵","🏍️","🚤","⛵","🛥️","🚢","✈️","🛩️","🚁","🚂","🚆","🚊","🚇","🚉","🚀"]
-    var countEmojis = 4
+    @State var countEmojis = 4
     var body: some View {
         VStack{
             HStack{
@@ -39,6 +39,25 @@ struct ContentView: View {
                 }
                
             }
+            HStack{
+                Button("+"){
+                    if countEmojis < emojis.count {
+                        countEmojis += 1
+                    }
+                }
+                .font(.largeTitle).foregroundColor(.black)
+                .frame(width: 50,height: 50)
+                .background(Circle().fill(.white)).shadow(radius: 20)
+                Spacer()
+                Button("-"){
+                    if countEmojis > 1 {
+                        countEmojis -= 1
+                    }
+                }.font(.largeTitle).foregroundColor(.black)
+                    .frame(width: 50,height: 50)
+                    .background(Circle().fill(.white)).shadow(radius: 20)
+            }
+            
         }
         .padding(.horizontal).foregroundColor(.red)
         
