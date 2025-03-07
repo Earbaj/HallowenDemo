@@ -40,31 +40,39 @@ struct ContentView: View {
                
             }
             HStack{
-                Button("+"){
-                    if countEmojis < emojis.count {
-                        countEmojis += 1
-                    }
-                }
-                .font(.largeTitle).foregroundColor(.black)
-                .frame(width: 50,height: 50)
-                .background(Circle().fill(.white)).shadow(radius: 20)
+                ButtonAdd
                 Spacer()
-                Button("-"){
-                    if countEmojis > 1 {
-                        countEmojis -= 1
-                    }
-                }.font(.largeTitle).foregroundColor(.black)
-                    .frame(width: 50,height: 50)
-                    .background(Circle().fill(.white)).shadow(radius: 20)
-            }
+                ButtonMinus
+                
+            }.padding(.horizontal)
             
         }
         .padding(.horizontal).foregroundColor(.red)
         
-      
+    
+    }
+    var ButtonAdd: some View{
+        Button("+"){
+            if countEmojis < emojis.count {
+                countEmojis += 1
+            }
+        }
+        .font(.largeTitle).foregroundColor(.black)
+        .frame(width: 50,height: 50)
+        .background(Circle().fill(.white)).shadow(radius: 20)
+    }
+    var ButtonMinus:some View{
+        Button("-"){
+            if countEmojis > 1 {
+                countEmojis -= 1
+            }
+        }.font(.largeTitle).foregroundColor(.black)
+            .frame(width: 50,height: 50)
+            .background(Circle().fill(.white)).shadow(radius: 20)
     }
 }
 
 #Preview {
     ContentView().preferredColorScheme(.light)
 }
+
