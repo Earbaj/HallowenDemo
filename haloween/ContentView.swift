@@ -19,7 +19,7 @@ struct CardView: View{
                 shape.stroke(lineWidth: 3)
                 Text(content).font(.largeTitle)
             }else{
-                shape.fill()
+                shape.fill(.green)
             }
         }.onTapGesture {
             isFaceUp = !isFaceUp
@@ -52,23 +52,26 @@ struct ContentView: View {
     
     }
     var ButtonAdd: some View{
-        Button("+"){
+        Button(action: {
             if countEmojis < emojis.count {
                 countEmojis += 1
             }
+        }) {
+            Image(systemName: "plus.circle")
+                .font(.largeTitle)
+                .foregroundColor(.black)
         }
-        .font(.largeTitle).foregroundColor(.black)
-        .frame(width: 50,height: 50)
-        .background(Circle().fill(.white)).shadow(radius: 20)
     }
     var ButtonMinus:some View{
-        Button("-"){
+       Button(action: {
             if countEmojis > 1 {
                 countEmojis -= 1
             }
-        }.font(.largeTitle).foregroundColor(.black)
-            .frame(width: 50,height: 50)
-            .background(Circle().fill(.white)).shadow(radius: 20)
+        }){
+            Image(systemName: "minus.circle")
+                .font(.largeTitle)
+                .foregroundColor(.black)
+        }
     }
 }
 
