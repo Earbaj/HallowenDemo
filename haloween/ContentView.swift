@@ -16,7 +16,7 @@ struct CardView: View{
             let shape = RoundedRectangle(cornerRadius: 20)
             if isFaceUp {
                 shape.fill().foregroundColor(.white)
-                shape.stroke(lineWidth: 3)
+                shape.strokeBorder(lineWidth: 3)
                 Text(content).font(.largeTitle)
             }else{
                 shape.fill(.green)
@@ -33,12 +33,15 @@ struct ContentView: View {
     @State var countEmojis = 4
     var body: some View {
         VStack{
-            HStack{
-                ForEach(emojis[0..<countEmojis], id: \.self){ emoji in
-                    CardView(content: emoji)
+            ScrollView{
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]){
+                    ForEach(emojis[0..<countEmojis], id: \.self){ emoji in
+                        CardView(content: emoji).aspectRatio(2/3, contentMode: .fit)
+                    }
+                   
                 }
-               
             }
+            Spacer()
             HStack{
                 ButtonAdd
                 Spacer()
